@@ -16,9 +16,6 @@
   <link rel="icon" type="image/svg+xml" href="assets/website/airdesk-mark.svg">
   <meta name="description" content="AirDesk transforms hand gestures into intuitive Windows desktop interactions using real-time computer vision and gesture recognition.">
   <title>AirDesk | Vivek Jotva</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="demo.css">
   <script src="script.js" defer></script>
@@ -240,7 +237,7 @@
                     <button class="desktop-icon" type="button" data-gesture-target data-desktop-action="open" data-window="files"><span>▰</span><b>Files</b></button>
                     <button class="desktop-icon" type="button" data-gesture-target data-desktop-action="open" data-window="settings"><span>⚙</span><b>Settings</b></button>
                   </div>
-                  <div class="desktop-window" id="desktop-window" hidden aria-live="polite">
+                  <div class="desktop-window" id="desktop-window" role="dialog" aria-modal="false" aria-labelledby="desktop-window-title" hidden>
                     <div class="desktop-window-title"><strong id="desktop-window-title">Notes</strong><button type="button" data-gesture-target data-desktop-action="close" aria-label="Close window">×</button></div>
                     <div class="desktop-window-content" id="desktop-window-content"></div>
                   </div>

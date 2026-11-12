@@ -33,7 +33,7 @@ The native Windows application uses the local webcam and performs its desktop in
 
 The GitHub Pages site is a separate static browser experience. When a visitor chooses **Start camera demo**, the browser requests video-only camera access and runs MediaPipe Gesture Recognizer locally using its pinned WebAssembly package and public model asset. The demo maps hand position to a virtual cursor and permits pinch clicks on controls inside a simulated desktop workspace. It has no backend and cannot move the operating-system cursor or send desktop input.
 
-Camera frames are processed on the visitor's device and are not sent to Google by this demo. The pinned SDK bundle contains a Google logging endpoint; the live demo discloses this and links to [MediaPipe's privacy notice](https://developers.google.com/edge/mediapipe/solutions/privacy) before camera use. The camera stream is stopped when the visitor presses **Stop**, switches away from the page, or leaves it. The public source and third-party package/model assets are not the private desktop implementation.
+Camera frames are processed on the visitor's device and are not uploaded by this demo. The pinned SDK bundle includes a Google logging endpoint, and Google's [MediaPipe privacy notice](https://developers.google.com/edge/mediapipe/solutions/privacy) describes usage and performance metrics sent by MediaPipe Tasks. The live demo links to this notice before camera use. It also loads the SDK and model from third-party hosts. The camera stream is stopped when the visitor presses **Stop**, switches away from the page, or leaves it. The public source and third-party package/model assets are not the private desktop implementation.
 
 ## Platform scope
 

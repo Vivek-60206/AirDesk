@@ -281,10 +281,13 @@
 }
 
 .desktop-icon:hover,
-.desktop-icon:focus-visible {
+.desktop-icon:focus-visible,
+.desktop-window button:focus-visible,
+.desktop-taskbar button:focus-visible {
   border-color: #cbb68b88;
   background: #cbb68b22;
   outline: none;
+  box-shadow: 0 0 0 2px #e2d1aa88;
 }
 
 .desktop-icon span {

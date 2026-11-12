@@ -37,8 +37,7 @@ The public website includes an interactive camera demo for hand tracking, virtua
 - Website: <https://vivek-60206.github.io/AirDesk/>
 - Camera access starts only after the visitor presses **Start camera demo**.
 - The demo requests video only; it does not request microphone access.
-- Video frames are processed in the browser and are not uploaded by this demo.
-- Camera frames are processed on the visitor's device and are not sent to Google by this demo. The pinned MediaPipe SDK bundle contains a Google logging endpoint; see [MediaPipe's privacy notice](https://developers.google.com/edge/mediapipe/solutions/privacy).
+- Camera frames are processed on the visitor's device and are not uploaded by this demo. The pinned SDK bundle includes a Google logging endpoint, and Google's [MediaPipe privacy notice](https://developers.google.com/edge/mediapipe/solutions/privacy) describes usage and performance metrics sent by MediaPipe Tasks. The page loads the SDK and model from third-party hosts; its fonts use local system fonts.
 - Camera processing stops when the visitor presses **Stop** or leaves the page.
 
 The browser demo is a showcase experience, not the native Windows application. Its website source is public under this repository's all-rights-reserved notice. The private production desktop source and system-control implementation remain in the separate private `AirDesk-Core` repository and are not part of this public project.

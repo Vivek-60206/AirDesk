@@ -11,7 +11,6 @@ const context = canvas.getContext("2d");
 const inferenceCanvas = document.createElement("canvas");
 const inferenceContext = inferenceCanvas.getContext("2d", { alpha: false });
 const cameraFrame = document.querySelector("#camera-frame");
-const placeholder = document.querySelector("#camera-placeholder");
 const startButton = document.querySelector("#camera-start");
 const stopButton = document.querySelector("#camera-stop");
 const cameraNote = document.querySelector("#camera-note");
@@ -141,9 +140,10 @@ function processFrame(now) {
       inferenceContext.drawImage(video, 0, 0, inferenceCanvas.width, inferenceCanvas.height);
       renderResult(recognizer.recognizeForVideo(inferenceCanvas, Math.round(now)));
     } catch (error) {
-      cameraNote.textContent = `Gesture tracking stopped: ${error.message || "the camera frame could not be processed."}`;
+      const message = `Gesture tracking stopped: ${error.message || "the camera frame could not be processed."}`;
       stopDemo();
       setStatus("error", "Tracking stopped");
+      cameraNote.textContent = message;
       return;
     }
   }
@@ -155,8 +155,13 @@ function releaseResources() {
   cancelAnimationFrame(animationFrame);
   animationFrame = 0;
   if (recognizer) {
-    recognizer.close();
-    recognizer = null;
+    try {
+      recognizer.close();
+    } catch {
+      // Always release the camera even if the runtime fails during shutdown.
+    } finally {
+      recognizer = null;
+    }
   }
   if (activeStream) {
     activeStream.getTracks().forEach((track) => track.stop());
@@ -309,7 +314,7 @@ function openDesktopWindow(name) {
   };
   const panel = panels[name];
   if (!panel) return;
-  desktopWindowTitle.firstChild.textContent = panel.title;
+  desktopWindowTitle.querySelector("strong").textContent = panel.title;
   desktopWindowContent.innerHTML = panel.content;
   desktopWindow.hidden = false;
   desktopTaskbarStatus.textContent = `${panel.title} open`;
