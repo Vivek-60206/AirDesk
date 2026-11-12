@@ -205,7 +205,7 @@
             <span class="section-index">06 — INTERACTIVE WEB DEMO</span>
             <h2>Move with your hand.<br><span>Try it in your browser.</span></h2>
           </div>
-          <p class="section-intro">Start the camera when you’re ready. Move your index finger to guide the on-page cursor, then pinch to click the test target.</p>
+            <p class="section-intro">Try a desktop-style workspace in your browser. Move your index finger to guide the cursor, then pinch to open apps and use controls inside the simulation.</p>
         </div>
 
         <div class="live-demo-shell">
@@ -222,7 +222,7 @@
                 <div class="camera-placeholder" id="camera-placeholder"><span class="camera-placeholder-icon">◎</span><strong>Your camera stays off until you start</strong><small>Allow camera access to try the browser demo.</small></div>
                 <span class="camera-frame-label">LOCAL CAMERA PREVIEW</span>
               </div>
-              <p class="camera-consent-note">Video frames stay in your browser; MediaPipe sends usage and performance metrics to Google. <a href="https://www.npmjs.com/package/@mediapipe/tasks-vision" target="_blank" rel="noopener">Privacy details</a>.</p>
+              <p class="camera-consent-note">Camera frames stay on your device. MediaPipe’s privacy notice says its Tasks APIs send usage and performance metrics to Google. <a href="https://developers.google.com/edge/mediapipe/solutions/privacy" target="_blank" rel="noopener">Privacy details</a>.</p>
               <div class="camera-controls">
                 <button class="button button-primary" id="camera-start" type="button">Start camera demo</button>
                 <button class="button button-quiet" id="camera-stop" type="button" disabled>Stop</button>
@@ -231,11 +231,26 @@
             </div>
 
             <div class="playground-column">
-              <div class="playground-topline"><span>INTERACTION AREA</span><span>WEB PAGE ONLY</span></div>
+              <div class="playground-topline"><span>SIMULATED WORKSPACE</span><span>RUNS IN THIS PAGE</span></div>
               <div class="gesture-playground" id="gesture-playground" aria-label="Gesture-controlled browser playground">
-                <div class="playground-orbit orbit-outer"></div><div class="playground-orbit orbit-inner"></div>
-                <div class="playground-instructions"><span class="playground-icon">⌖</span><strong>Move your index finger</strong><small>Guide the cursor into this area</small></div>
-                <button class="playground-target" id="playground-target" data-gesture-target type="button"><span class="target-icon">✳</span><span>Pinch to activate</span></button>
+                <div class="desktop-surface">
+                  <div class="desktop-menubar"><strong>◈ AirDesk</strong><span>Gesture workspace</span><span>● Local demo</span></div>
+                  <div class="desktop-icons" aria-label="Demo apps">
+                    <button class="desktop-icon" type="button" data-gesture-target data-desktop-action="open" data-window="notes"><span>▤</span><b>Notes</b></button>
+                    <button class="desktop-icon" type="button" data-gesture-target data-desktop-action="open" data-window="files"><span>▰</span><b>Files</b></button>
+                    <button class="desktop-icon" type="button" data-gesture-target data-desktop-action="open" data-window="settings"><span>⚙</span><b>Settings</b></button>
+                  </div>
+                  <div class="desktop-window" id="desktop-window" hidden aria-live="polite">
+                    <div class="desktop-window-title"><strong id="desktop-window-title">Notes</strong><button type="button" data-gesture-target data-desktop-action="close" aria-label="Close window">×</button></div>
+                    <div class="desktop-window-content" id="desktop-window-content"></div>
+                  </div>
+                  <div class="desktop-taskbar">
+                    <button type="button" data-gesture-target data-desktop-action="start" aria-label="Toggle start menu">◈</button>
+                    <span>AirDesk gesture demo</span>
+                    <span id="desktop-taskbar-status">Ready</span>
+                  </div>
+                  <div class="desktop-instructions"><strong>Move your index finger</strong><span>Pinch an app to open it</span></div>
+                </div>
                 <div class="playground-cursor" id="playground-cursor" aria-hidden="true"><span></span></div>
                 <span class="playground-cursor-label" id="playground-cursor-label">VIRTUAL CURSOR</span>
                 <span class="playground-coordinates" id="playground-coordinates">X — / Y —</span>
@@ -248,7 +263,7 @@
             </div>
           </div>
 
-          <p class="demo-privacy"><strong>Privacy:</strong> video frames are processed locally in your browser and aren’t uploaded by this demo. MediaPipe sends usage and performance metrics to Google. The virtual cursor can only click targets inside this page; it cannot control your desktop.</p>
+          <p class="demo-privacy"><strong>Privacy &amp; limits:</strong> camera frames are processed on your device and are not sent to Google by this demo. The page loads MediaPipe code and its gesture model from third-party Google/CDN hosts; the MediaPipe SDK includes a Google logging endpoint for usage and performance metrics. <a href="https://developers.google.com/edge/mediapipe/solutions/privacy" target="_blank" rel="noopener">Read MediaPipe’s privacy notice</a>. This is a desktop-style simulation: it only interacts with controls in this page and cannot control your real desktop or other apps.</p>
         </div>
       </div>
     </section>

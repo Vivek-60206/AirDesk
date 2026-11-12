@@ -217,6 +217,188 @@
   touch-action: manipulation;
 }
 
+.desktop-surface {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  color: #f4f1e9;
+  background:
+    radial-gradient(ellipse at 72% 36%, #cbb68b2b, transparent 38%),
+    linear-gradient(135deg, #25271f, #151813 62%, #25241d);
+  font-family: var(--font);
+}
+
+.desktop-menubar,
+.desktop-taskbar {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  background: #10120fe8;
+  backdrop-filter: blur(12px);
+  font-size: 8px;
+}
+
+.desktop-menubar {
+  top: 0;
+  height: 30px;
+  border-bottom: 1px solid #ffffff19;
+}
+
+.desktop-menubar strong {
+  color: var(--gold-light);
+  font-size: 9px;
+}
+
+.desktop-menubar span:last-child {
+  margin-left: auto;
+  color: #a8c894;
+}
+
+.desktop-icons {
+  position: absolute;
+  top: 48px;
+  left: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.desktop-icon {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  width: 54px;
+  padding: 5px 2px;
+  border: 1px solid transparent;
+  color: #f4f1e9;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.desktop-icon:hover,
+.desktop-icon:focus-visible {
+  border-color: #cbb68b88;
+  background: #cbb68b22;
+  outline: none;
+}
+
+.desktop-icon span {
+  color: var(--gold-light);
+  font-size: 20px;
+  line-height: 1.1;
+}
+
+.desktop-icon b {
+  font-size: 8px;
+  font-weight: 500;
+  text-shadow: 0 1px 3px #000;
+}
+
+.desktop-window {
+  position: absolute;
+  z-index: 2;
+  top: 23%;
+  left: 28%;
+  width: min(62%, 280px);
+  min-height: 112px;
+  border: 1px solid #cbb68b78;
+  background: #191b17f5;
+  box-shadow: 0 12px 35px #0008;
+}
+
+.desktop-window[hidden] {
+  display: none;
+}
+
+.desktop-window-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 29px;
+  padding: 0 8px 0 11px;
+  border-bottom: 1px solid #ffffff1c;
+  font-size: 9px;
+}
+
+.desktop-window-title button,
+.desktop-window-content button {
+  border: 1px solid #cbb68b58;
+  color: #f4f1e9;
+  background: #282a23;
+  cursor: pointer;
+}
+
+.desktop-window-title button {
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.desktop-window-content {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  color: #cfcec5;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.desktop-window-content p {
+  margin: 0;
+}
+
+.desktop-window-content button {
+  justify-self: start;
+  padding: 5px 8px;
+  font: inherit;
+}
+
+.desktop-taskbar {
+  bottom: 0;
+  height: 34px;
+  border-top: 1px solid #ffffff19;
+}
+
+.desktop-taskbar button {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #cbb68b66;
+  color: var(--gold-light);
+  background: #25271f;
+  cursor: pointer;
+}
+
+.desktop-taskbar span:last-child {
+  margin-left: auto;
+  color: #a8c894;
+}
+
+.desktop-instructions {
+  position: absolute;
+  right: 12px;
+  bottom: 48px;
+  display: grid;
+  gap: 3px;
+  text-align: right;
+  text-shadow: 0 1px 4px #000;
+  pointer-events: none;
+}
+
+.desktop-instructions strong {
+  font-size: 10px;
+}
+
+.desktop-instructions span {
+  color: #cfcec5;
+  font-size: 8px;
+}
+
 .playground-orbit {
   position: absolute;
   border: 1px solid #cbb68b26;
@@ -381,6 +563,11 @@
   color: var(--gold-light);
 }
 
+.demo-privacy a {
+  color: var(--gold-light);
+  text-underline-offset: 2px;
+}
+
 @media (max-width: 760px) {
   .live-demo-grid {
     grid-template-columns: 1fr;
@@ -416,6 +603,11 @@
 
   .gesture-playground {
     min-height: 260px;
+  }
+
+  .desktop-window {
+    left: 24%;
+    width: 70%;
   }
 
   .gesture-readout {

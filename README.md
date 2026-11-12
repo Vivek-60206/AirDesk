@@ -32,13 +32,13 @@ Gesture recognition and system actions are performed locally by the desktop appl
 
 ## Try the browser demo
 
-The public website includes an interactive camera demo for hand tracking, virtual cursor movement, and pinch clicks inside a test area on the page. It does not control the visitor's operating system.
+The public website includes an interactive camera demo for hand tracking, virtual cursor movement, and pinch clicks inside a simulated desktop workspace. Visitors can open demo apps and use their controls, but it does not control the visitor's operating system.
 
 - Website: <https://vivek-60206.github.io/AirDesk/>
 - Camera access starts only after the visitor presses **Start camera demo**.
 - The demo requests video only; it does not request microphone access.
 - Video frames are processed in the browser and are not uploaded by this demo.
-- MediaPipe sends usage and performance metrics to Google. See [MediaPipe's package privacy notice](https://www.npmjs.com/package/@mediapipe/tasks-vision).
+- Camera frames are processed on the visitor's device and are not sent to Google by this demo. The pinned MediaPipe SDK bundle contains a Google logging endpoint; see [MediaPipe's privacy notice](https://developers.google.com/edge/mediapipe/solutions/privacy).
 - Camera processing stops when the visitor presses **Stop** or leaves the page.
 
 The browser demo is a showcase experience, not the native Windows application. Its website source is public under this repository's all-rights-reserved notice. The private production desktop source and system-control implementation remain in the separate private `AirDesk-Core` repository and are not part of this public project.

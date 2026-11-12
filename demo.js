@@ -24,7 +24,11 @@ const playground = document.querySelector("#gesture-playground");
 const cursor = document.querySelector("#playground-cursor");
 const cursorLabel = document.querySelector("#playground-cursor-label");
 const coordinates = document.querySelector("#playground-coordinates");
-const targetButton = document.querySelector("#playground-target");
+const desktopWindow = document.querySelector("#desktop-window");
+const desktopWindowTitle = document.querySelector("#desktop-window-title");
+const desktopWindowContent = document.querySelector("#desktop-window-content");
+const desktopTaskbarStatus = document.querySelector("#desktop-taskbar-status");
+const desktopIcons = document.querySelector(".desktop-icons");
 
 const HAND_CONNECTIONS = [
   [0, 1], [1, 2], [2, 3], [3, 4],
@@ -42,6 +46,7 @@ let lastInferenceAt = 0;
 let previousVideoTime = -1;
 let previousPinch = false;
 let totalClicks = 0;
+let demoVolume = 6;
 
 function setStatus(state, message) {
   stateBadge.dataset.state = state;
@@ -273,8 +278,8 @@ async function startDemo() {
     stopButton.disabled = false;
     setStatus("active", "Tracking on device");
     cameraNote.textContent = usedCpuFallback
-      ? "Using CPU inference. Move your index finger inside the playground and pinch the target."
-      : "Move your index finger inside the browser playground. Pinch over the target to click it.";
+      ? "Using CPU inference. Move your index finger over a demo app and pinch to select it."
+      : "Move your index finger over an app or control and pinch to select it.";
     lastInferenceAt = 0;
     animationFrame = requestAnimationFrame(processFrame);
   } catch (error) {
@@ -287,13 +292,61 @@ async function startDemo() {
   }
 }
 
+function openDesktopWindow(name) {
+  const panels = {
+    notes: {
+      title: "Notes",
+      content: '<p class="desktop-window-message">Welcome to AirDesk. This note stays in the demo workspace.</p><button type="button" data-gesture-target data-desktop-action="save">Save note</button>',
+    },
+    files: {
+      title: "Files",
+      content: '<p class="desktop-window-message">This PC<br>Documents&nbsp; · &nbsp;Pictures&nbsp; · &nbsp;Welcome.txt</p><button type="button" data-gesture-target data-desktop-action="file">Open Welcome.txt</button>',
+    },
+    settings: {
+      title: "Quick settings",
+      content: `<p>Demo volume: <strong id="demo-volume-level">${demoVolume}</strong></p><div><button type="button" data-gesture-target data-desktop-action="volume-down">Volume −</button> <button type="button" data-gesture-target data-desktop-action="volume-up">Volume +</button></div>`,
+    },
+  };
+  const panel = panels[name];
+  if (!panel) return;
+  desktopWindowTitle.firstChild.textContent = panel.title;
+  desktopWindowContent.innerHTML = panel.content;
+  desktopWindow.hidden = false;
+  desktopTaskbarStatus.textContent = `${panel.title} open`;
+}
+
+function handleDesktopAction(target) {
+  const { desktopAction: action, window: windowName } = target.dataset;
+  if (action === "open") openDesktopWindow(windowName);
+  if (action === "close") {
+    desktopWindow.hidden = true;
+    desktopTaskbarStatus.textContent = "Ready";
+  }
+  if (action === "start") {
+    desktopIcons.hidden = !desktopIcons.hidden;
+    desktopTaskbarStatus.textContent = desktopIcons.hidden ? "Start menu closed" : "Choose an app";
+  }
+  if (action === "save" || action === "file") {
+    const message = desktopWindowContent.querySelector(".desktop-window-message");
+    if (message) message.textContent = action === "save" ? "Saved in this demo session." : "Welcome to AirDesk — a gesture-controlled desktop experience.";
+    desktopTaskbarStatus.textContent = action === "save" ? "Note saved" : "Welcome.txt open";
+  }
+  if (action === "volume-up" || action === "volume-down") {
+    demoVolume = Math.max(0, Math.min(10, demoVolume + (action === "volume-up" ? 1 : -1)));
+    const level = document.querySelector("#demo-volume-level");
+    if (level) level.textContent = String(demoVolume);
+    desktopTaskbarStatus.textContent = `Demo volume ${demoVolume}`;
+  }
+}
+
 startButton.addEventListener("click", startDemo);
 stopButton.addEventListener("click", stopDemo);
-targetButton.addEventListener("click", () => {
+playground.addEventListener("click", (event) => {
+  const target = event.target.closest("[data-gesture-target]");
+  if (!target || !playground.contains(target)) return;
   totalClicks += 1;
   clickCount.textContent = String(totalClicks);
-  targetButton.classList.add("is-activated");
-  window.setTimeout(() => targetButton.classList.remove("is-activated"), 260);
+  handleDesktopAction(target);
 });
 document.addEventListener("visibilitychange", () => {
   if (document.hidden && activeStream) stopDemo();
