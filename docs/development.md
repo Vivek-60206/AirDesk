@@ -6,7 +6,7 @@ This public repository is a documentation/showcase package. It does not include 
 
 - The developer launched the desktop application from its Python source environment on Windows.
 - The developer reported successful manual checks of the application interactions.
-- The automated test run reported 155 passing tests.
+- On 12 November 2026, the private core's automated suite passed 162 tests. The private implementation tests are not included in this public showcase repository.
 - A PyInstaller build completed, but its unsigned executable was blocked by the developer machine's active Code Integrity policy.
 
 These are developer-reported results, not a claim that every Windows configuration or hardware combination has been tested.

@@ -27,7 +27,13 @@ AirDesk is a Windows desktop application that translates webcam-based hand track
 
 ## Runtime and privacy
 
-The application uses the local webcam and performs its desktop interaction on the user's computer. Camera access must be granted by Windows. This package does not make claims about third-party cloud processing.
+The native Windows application uses the local webcam and performs its desktop interactions on the user's computer. Camera access must be granted by Windows. The separate browser demo has its own camera and third-party metrics disclosures below.
+
+## Public website demo
+
+The GitHub Pages site is a separate static browser experience. When a visitor chooses **Start camera demo**, the browser requests video-only camera access and runs MediaPipe Gesture Recognizer locally using its pinned WebAssembly package and public model asset. The demo maps hand position to a virtual cursor and permits pinch clicks only on elements inside its test area. It has no backend and cannot move the operating-system cursor or send desktop input.
+
+MediaPipe reports usage and performance metrics to Google; the live demo discloses this before camera use. The camera stream is stopped when the visitor presses **Stop**, switches away from the page, or leaves it. The public source and third-party package/model assets are not the private desktop implementation.
 
 ## Platform scope
 
