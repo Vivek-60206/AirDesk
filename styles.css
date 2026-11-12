@@ -487,3 +487,166 @@ main:focus{outline:none}
 .video-demo{margin-top:24px}
 @media(max-width:900px){.demo-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.demo-card:last-child{grid-column:1/-1}}
 @media(max-width:560px){.demo-gallery{grid-template-columns:1fr}.demo-card:last-child{grid-column:auto}.demo-visual{height:245px}.preview-layout{height:170px}.video-demo{align-items:flex-start}.video-demo>small{margin-left:0}}
+
+/* Refined type and AirDesk triangle mark */
+:root {
+  --font: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  --display: "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.brand {
+  gap: 11px;
+  font-size: 23px;
+  font-weight: 720;
+  letter-spacing: -0.055em;
+}
+
+.brand-mark {
+  position: relative;
+  display: grid;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 0;
+}
+
+.brand-mark::before,
+.brand-mark::after {
+  position: absolute;
+  content: "";
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.brand-mark::before {
+  inset: 1px 0 0;
+  background: var(--gold);
+}
+
+.brand-mark::after {
+  inset: 4px 4px 3px;
+  background: var(--bg);
+}
+
+.brand-mark i {
+  z-index: 1;
+  width: 4px;
+  height: 4px;
+  margin-top: 7px;
+  border-radius: 50%;
+  background: var(--gold-light);
+}
+
+.brand-dot {
+  margin-left: -11px;
+}
+
+.hero h1,
+.section-heading h2,
+.technology-layout h2,
+.download-content h2 {
+  font-family: var(--display);
+  font-weight: 680;
+  letter-spacing: -0.065em;
+  text-wrap: balance;
+}
+
+.hero h1 {
+  max-width: 11ch;
+  font-size: clamp(3.35rem, 6.3vw, 5.6rem);
+  line-height: 0.99;
+  margin-block: 28px;
+}
+
+.section-heading h2,
+.technology-layout h2,
+.download-content h2 {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  line-height: 1.08;
+}
+
+.hero-description,
+.section-intro {
+  max-width: 46ch;
+  font-size: clamp(1rem, 1.15vw, 1.125rem);
+  line-height: 1.8;
+  letter-spacing: -0.012em;
+}
+
+.eyebrow,
+.section-index,
+.mini-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.17em;
+  line-height: 1.5;
+}
+
+.button {
+  font-size: 0.82rem;
+  letter-spacing: 0.005em;
+}
+
+.art-core {
+  gap: 9px;
+}
+
+.core-symbol {
+  position: relative;
+  display: grid;
+  width: 70px;
+  height: 62px;
+  place-items: center;
+}
+
+.core-symbol::before,
+.core-symbol::after {
+  position: absolute;
+  content: "";
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.core-symbol::before {
+  inset: 0;
+  background: var(--gold);
+}
+
+.core-symbol::after {
+  inset: 3px 4px 4px;
+  background: #1c1d18;
+}
+
+.core-symbol i {
+  z-index: 1;
+  width: 7px;
+  height: 7px;
+  margin-top: 13px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  box-shadow: 0 0 14px #e2d1aa88;
+}
+
+.core-caption {
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+}
+
+@media (max-width: 560px) {
+  .hero h1 {
+    font-size: clamp(3.15rem, 13vw, 4.1rem);
+    letter-spacing: -0.065em;
+  }
+
+  .section-heading h2,
+  .technology-layout h2,
+  .download-content h2 {
+    font-size: clamp(2.25rem, 10vw, 3rem);
+  }
+}
